@@ -1,0 +1,41 @@
+# Dependency and build output
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# Secrets and private data
+.env
+.env.*
+!.env.example
+!.env.frontend.example
+!.env.*.example
+backend/private/
+**/*.sqlite
+**/*.sqlite-*
+**/*.db
+**/*.db-*
+**/*.pem
+**/*.p12
+*.jks
+*.keystore
+*.key
+**/service-account*.json
+**/firebase-adminsdk*.json
+**/google-credentials*.json
+public/firebase-config.js
+
+# Local machine / cloud data
+android/local.properties
+android/.gradle/
+android/app/build/
+cloud/oracle/persistent/
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
