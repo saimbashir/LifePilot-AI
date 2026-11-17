@@ -1,7 +1,7 @@
 name: Module 3 source CI (no private Gmail sends)
+# Run this legacy module check manually. Module4 CI runs the same full suite on every push/PR.
 on:
-  push:
-  pull_request:
+  workflow_dispatch:
 jobs:
   verify:
     runs-on: ubuntu-latest
