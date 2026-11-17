@@ -24,7 +24,7 @@ test('AI endpoints: authenticated consent, summaries, draft-only replies, and pr
   }};
   const app=express();app.use(express.json());app.use('/api/ai',(req,res,next)=>{if(req.headers['x-test-auth']!=='yes')return res.status(401).json({error:'Unauthorized'});next()});
   const check=(req,res,next)=>req.headers['x-csrf-token']==='csrf'?next():res.status(403).json({error:'Missing CSRF'});
-  app.use('/api/ai',createAiRouter({store,gmail,getAccountId:()=>account,requireCsrf:check,model}));
+  app.use('/api/ai',createAiRouter({store,gmail,getAccountId:()=>account,requireCsrf:check,model,routerFactory:()=>express.Router()}));
   const server=app.listen(0,'127.0.0.1');t.after(()=>server.close());
   await new Promise(resolve=>server.once('listening',resolve));const url=`http://127.0.0.1:${server.address().port}/api/ai`;
   const req=async(path,method='GET',body,csrf=true,auth=true)=>{const r=await fetch(url+path,{method,headers:{'Content-Type':'application/json',...(auth?{'x-test-auth':'yes'}:{}),...(csrf?{'x-csrf-token':'csrf'}:{})},...(body!==undefined?{body:JSON.stringify(body)}:{})});return {status:r.status,data:await r.json()}};
