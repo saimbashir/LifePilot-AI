@@ -1,7 +1,7 @@
 name: LifePilot Module 2 Quality Checks
+# Run this legacy module check manually. Module4 CI runs the same full suite on every push/PR.
 on:
-  push:
-  pull_request:
+  workflow_dispatch:
 jobs:
   verify:
     runs-on: ubuntu-latest
