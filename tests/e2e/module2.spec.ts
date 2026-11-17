@@ -9,7 +9,7 @@ async function mockGmail(page:any){
 test('demo workspace retains original navigation and colours',async({page})=>{
   await page.route('**/api/session',route=>route.fulfill({json:{connected:false,configured:false,monitoring:'Not deployed'}}));
   await page.goto('/');await page.getByRole('button',{name:/Enter workspace/i}).click();
-  await expect(page.getByText('Demo Workspace')).toBeVisible();
+  await expect(page.getByText('Demo Workspace',{exact:true})).toBeVisible();
   await page.getByRole('button',{name:/Smart inbox/i}).click();
   await expect(page.getByText('Research internship — next steps').first()).toBeVisible();
   await page.getByRole('button',{name:/Settings/i}).first().click();
