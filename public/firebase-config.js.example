@@ -1,0 +1,9 @@
+// Save as public/firebase-config.js AFTER configuring Firebase Web Messaging.
+// This Firebase WEB configuration is public; never put a service account here.
+self.LIFEPILOT_FIREBASE_CONFIG = {
+  apiKey: "YOUR_PUBLIC_FIREBASE_WEB_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_WEB_APP_ID"
+};

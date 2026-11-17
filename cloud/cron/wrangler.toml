@@ -1,0 +1,9 @@
+name = "lifepilot-monitor-cron"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+# Worker Free provides scheduled triggers, but it DOES NOT persist the Node SQLite database.
+# Run it only with an externally deployed HTTPS backend using durable storage.
+[triggers]
+crons = ["*/15 * * * *"]
+[vars]
+LIFEPILOT_BACKEND_URL = "https://example.invalid"

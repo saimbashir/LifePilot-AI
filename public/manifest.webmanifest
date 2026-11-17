@@ -1,0 +1,25 @@
+{
+  "name": "LifePilot AI \u2014 Email Copilot",
+  "short_name": "LifePilot",
+  "description": "Private Gmail assistant with explicit review and approval",
+  "id": "/",
+  "start_url": "/?source=installed",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F8FAF9",
+  "theme_color": "#103F35",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

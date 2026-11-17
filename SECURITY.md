@@ -1,19 +1,23 @@
-# LifePilot AI Security Policy
+# Security and responsible disclosure
 
-LifePilot AI integrates personal Gmail, OAuth, third-party AI and email sending. The project is in **development**, not a claim of production-grade security.
+This project integrates personal Gmail, OAuth credentials, third-party AI, and email sending. It is a **development-stage portfolio project**, not a production security guarantee.
 
-## Responsible reporting
+## Reporting a security issue
 
-Avoid posting credentials, private emails, proof-of-concept exploits or tokens in public issues. Contact the repository owner privately via their GitHub profile.
+Please avoid publishing exploit details, secrets or private email content in GitHub issues. Contact the repository owner privately through the GitHub profile.
 
-## Essential deployment rules
+## Required private configuration
 
-- Never commit `backend/.env`, Google OAuth secrets or refresh tokens, Groq credentials, Firebase service account JSON, private SQLite data, backups or Android signing keys.
-- Keep sensitive configuration on a backend server or in a managed secrets store. Use HTTPS in the deployed environment.
-- Rotate credentials that were previously exposed in messages or screenshots.
-- Grant only the minimum required Gmail scopes. Remember Google's verification requirements for public apps.
-- Model-generated email suggestions must **never** bypass the owner's explicit approval of recipient, subject, body, attachments and current draft version.
-- Treat incoming email content as untrusted, and never allow it to issue privileged commands.
-- Don't retry an uncertain Gmail send without first checking the provider's outcome.
+- Keep `backend/.env` and all access/refresh tokens, local SQLite data/backups, Firebase service account JSON, Android signing keys, and private logs outside Git.
+- Use backend-only environment variables or a managed secret store for production.
+- Rotate any Google OAuth or Groq keys previously shared in chat or screenshots before relying on them.
+- Never commit production Gmail test data or user emails.
 
-See `docs/SECURITY.md` and `docs/MODULE4_PRIVACY_SECURITY.md` in the full source archive for implementation details and release blockers.
+## Guardrails
+
+- AI produces draft suggestions only, not sends. The authenticated account must explicitly approve the exact draft; modifications require new approval.
+- Confirm live send results with the Gmail API. Do not automatically retry uncertain sends.
+- Treat every incoming message as untrusted, including model instructions and links.
+- Configure TLS, origin/CSRF protection, hardened session cookies, persistent encrypted storage and backup in any cloud deployment.
+
+See `docs/SECURITY.md` and `docs/MODULE4_PRIVACY_SECURITY.md` for implementation notes and known limitations.

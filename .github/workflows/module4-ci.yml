@@ -1,0 +1,32 @@
+name: Module4 CI (mocked tests and source checks)
+on:
+  push:
+  pull_request:
+jobs:
+  source-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install frontend and backend packages (registry access required)
+        run: |
+          npm install --no-audit --no-fund
+          npm --prefix backend install --no-audit --no-fund
+      - name: Basic secret scan
+        run: npm run scan:secrets
+      - name: Backend syntax
+        run: npm run check:backend
+      - name: Backend mocked tests
+        run: npm run test:backend
+      - name: Offline preview tests
+        run: npm test
+      - name: Frontend strict typecheck
+        run: npm run typecheck
+      - name: Frontend production build
+        run: npm run build
+      - name: Install Chromium
+        run: npx playwright install chromium --with-deps
+      - name: Browser e2e
+        run: npm run test:e2e

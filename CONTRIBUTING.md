@@ -1,17 +1,9 @@
-# Contributing to LifePilot AI
+# Contributing
 
-LifePilot AI is currently a personal portfolio project. Bug reports and suggestions are welcome, but **do not include private email contents, OAuth tokens, API keys or signing credentials** in public issues.
+LifePilot AI is currently a personal portfolio project. Discussion and bug reports are welcome, but please do not include private email messages, OAuth tokens, API keys, or secret values in issue descriptions.
 
-## Development
+Before proposing a change, review the security-sensitive approval flow. AI-generated text must remain a draft until the owner explicitly approves its current recipient, subject, body, attachments and version. Never introduce an automatic send path.
 
-1. Install frontend and backend dependencies separately.
-2. Configure local environment variables from example files.
-3. Run `npm run typecheck`, `npm run build`, `npm run test:backend`, and `npm test`.
-4. Run Playwright checks where browser dependencies are available.
-5. Include the test output and known limitations in any pull request.
+Run `npm run typecheck`, `npm run build`, `npm run test:backend`, `npm test` and `npm run test:e2e` where dependencies and Chromium are available. Describe any blocked checks and include non-sensitive reproduction steps.
 
-## Safety-critical contributions
-
-Do not add email sending directly to AI handlers. All sending must require explicit owner approval of the current draft and use the deduplicated Gmail send path. Handle incoming email as untrusted data.
-
-**Licensing:** No open-source license has been granted; obtain the owner's permission before reusing the project's code.
+No open-source license has been granted; obtain the owner's permission before reusing substantive code outside this repository.

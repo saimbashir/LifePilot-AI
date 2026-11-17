@@ -1,0 +1,9 @@
+# Replace example.invalid with your verified HTTPS hostname before deployment.
+example.invalid {
+    encode zstd gzip
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        X-Content-Type-Options "nosniff"
+    }
+    reverse_proxy app:8787
+}

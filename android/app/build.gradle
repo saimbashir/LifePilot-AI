@@ -1,0 +1,18 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'ai.lifepilot.app'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'ai.lifepilot.app'
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName '4.0.0-pre-release'
+        manifestPlaceholders = [lifepilotHost: project.findProperty('lifepilotHost') ?: 'replace-me.invalid']
+        resValue 'string', 'launch_url', 'https://' + (project.findProperty('lifepilotHost') ?: 'replace-me.invalid') + '/'
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+dependencies {
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.7.4'
+}

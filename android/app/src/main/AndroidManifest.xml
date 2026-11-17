@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <application android:label="@string/app_name" android:allowBackup="false" android:usesCleartextTraffic="false" android:icon="@android:drawable/ic_dialog_email" android:theme="@android:style/Theme.Material.Light.NoActionBar">
+    <!-- Trusted Web Activity uses Chrome's web origin and OAuth cookies, NOT a
+         separate WebView-origin session. Only trust verified Digital Asset Links. -->
+    <activity android:name="com.google.androidbrowserhelper.trusted.LauncherActivity" android:exported="true">
+      <meta-data android:name="android.support.customtabs.trusted.DEFAULT_URL" android:value="@string/launch_url"/>
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+      <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="https" android:host="${lifepilotHost}"/>
+      </intent-filter>
+    </activity>
+  </application>
+</manifest>

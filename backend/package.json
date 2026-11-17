@@ -1,0 +1,22 @@
+{
+  "name": "lifepilot-api",
+  "version": "4.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "dev": "node --watch src/server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "check": "node --check src/server.mjs && node --check src/gmail.mjs && node --check src/store.mjs && node --check src/security.mjs && node --check src/monitoring/monitor.mjs && node --check src/monitoring/assistant.mjs && node --check src/monitoring/push.mjs && node --check src/ai/provider.mjs && node --check src/ai/routes.mjs && node --check src/ai/prompts.mjs && node --check src/ai/intent.mjs && node --check src/ai/schemas.mjs",
+    "check:groq": "node scripts/check-groq.mjs",
+    "backup": "node scripts/backup.mjs",
+    "check:db": "node scripts/check-db.mjs",
+    "check:automation": "node scripts/check-automation.mjs"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

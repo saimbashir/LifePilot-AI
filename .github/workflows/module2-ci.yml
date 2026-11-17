@@ -1,0 +1,31 @@
+name: LifePilot Module 2 Quality Checks
+on:
+  push:
+  pull_request:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Install frontend tooling
+        run: npm install --no-audit --no-fund
+      - name: Install backend dependencies
+        run: npm --prefix backend install --no-audit --no-fund
+      - name: TypeScript typecheck
+        run: npm run typecheck
+      - name: React production build
+        run: npm run build
+      - name: Backend syntax checks
+        run: npm run check:backend
+      - name: Backend Gmail and security tests
+        run: npm run test:backend
+      - name: Offline demo preview tests
+        run: npm test
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: Mocked-Gmail browser tests
+        run: npm run test:e2e
